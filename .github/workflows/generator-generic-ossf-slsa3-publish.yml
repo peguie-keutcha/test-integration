@@ -1,19 +1,47 @@
-default:
-  image: php:latest
+name: PHP Tests
 
-before_script:
-  - ls
-  - echo "debut de test"
+on: [push]
 
-test_latest:
-  script: 
-    - echo "VM"
-    - php -ver
-    
-t1_latest:
-  script:
-    -php:8.1-cli
-    - php test.php
+jobs:
+  test_latest:
+    name: Test with PHP Latest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 'latest'
+          
+      - name: Display files in directory
+        run: ls
+      
+      - name: Start of test
+        run: echo "Debut de test"
+      
+      - name: Display VM
+        run: echo "VM"
+      
+      - name: Display PHP version
+        run: php -v
+
+  t1_latest:
+    name: Test 1 with PHP 8.1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Set up PHP 8.1
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          
+      - name: Execute PHP script
+        run: php test.php
+
 
 
 
