@@ -1,0 +1,33 @@
+default:
+  image: php:latest
+
+before_script:
+  - ls
+  - echo "debut de test"
+
+test_latest:
+  stage: test
+  script: 
+    - echo "VM"
+    - php -ver
+    
+t0_latest: 
+  stage: test
+  script:
+    - php test.php
+
+t1_latest:
+  stage: test
+  image: php:8.1-cli
+  script:
+    - php test.php
+    - echo "VM1"
+    - php -ver
+
+       
+test:
+    image: php:8.2-cli
+    script:
+        - echo VM2
+        - php test.php
+        - echo "fin du test"
