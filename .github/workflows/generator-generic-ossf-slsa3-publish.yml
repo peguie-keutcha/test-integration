@@ -10,8 +10,10 @@ test_latest:
     - echo "VM"
     - php -ver
     
-t0_latest: 
-  stage: test
+t1_latest:
   script:
+    -php:8.1-cli
     - php test.php
+
+
 
